@@ -39,10 +39,10 @@ customElements.define(
         <div class="container" @click="${this.setImageIndex}">
           ${numArray.map(i => {
             return html`
-              <img
-                src="./images/${i}.jpg"
+              <div
                 class="image ${i === this.largeIndex && 'large'} ${i ===
                   this.horizontalIndex && 'horizontal'}"
+                style="background-image: url('./images/${i}.jpg');"
               />
             `;
           })}
