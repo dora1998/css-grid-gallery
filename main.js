@@ -15,11 +15,13 @@ customElements.define(
 
     setImageIndex() {
       this.largeIndex = Math.floor(Math.random() * IMG_LENGTH);
+      this.horizontalIndex = Math.floor(Math.random() * IMG_LENGTH);
+
+      // 大きい枠が後ろにくると崩れるため
       if (this.largeIndex >= IMG_LENGTH / 2) {
         this.largeIndex = Math.floor(this.largeIndex / 2);
       }
-      this.horizontalIndex = Math.floor(Math.random() * IMG_LENGTH);
-
+      // 大きい枠と横長枠が被ったらもう一回やり直す
       if (this.largeIndex === this.horizontalIndex) {
         this.setImageIndex();
       }
