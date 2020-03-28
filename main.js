@@ -8,6 +8,12 @@ const IMG_LENGTH = 8;
 customElements.define(
   'grid-gallery',
   class extends LitElement {
+    static get properties() {
+      return {
+        largeIndex: { type: Number },
+        horizontalIndex: { type: Number }
+      };
+    }
     constructor() {
       super();
       this.setImageIndex();
@@ -30,20 +36,18 @@ customElements.define(
     render() {
       const numArray = [...Array(IMG_LENGTH).keys()];
       return html`
-        <div>
-          <div class="container">
-            ${numArray.map(i => {
-              return html`
-                <img
-                  src="./images/${i}.jpg"
-                  class="image ${i === this.largeIndex && 'large'} ${i ===
-                    this.horizontalIndex && 'horizontal'}"
-                />
-              `;
-            })}
-          </div>
-          <link rel="stylesheet" href="./styles.css" type="text/css" />
+        <div class="container" @click="${this.setImageIndex}">
+          ${numArray.map(i => {
+            return html`
+              <img
+                src="./images/${i}.jpg"
+                class="image ${i === this.largeIndex && 'large'} ${i ===
+                  this.horizontalIndex && 'horizontal'}"
+              />
+            `;
+          })}
         </div>
+        <link rel="stylesheet" href="./styles.css" type="text/css" />
       `;
     }
   }
